@@ -14,23 +14,19 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
-
-        
         // DB::table('users')->insert()
-        // $users = [];
+        $users = [];
 
-        // for($i = 0; $i < 100; $i++){
-        //     $users[] = [
-        //         'name' => $faker->name,
-        //         'email' => $faker->email,
-        //         'password' => bcrypt('secret')
-        //     ];
-        // }
-
-
+        for($i = 0; $i < 100; $i++){
+            $users[] = [
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => bcrypt('secret')
+            ];
+        }
 
         // dd($users);
 
-        // DB::table('users')->insert($users);
+        DB::table('users')->insert($users);
     }
 }
