@@ -23,7 +23,7 @@ class Books extends Migration
 
             // area 
             $table->integer('area_id')->unsigned();
-            $table->foreign('area_id')->references('id')->on('area');
+            $table->foreign('area_id')->references('id')->on('areas');
         });
 
         Schema::create('book_themes', function (Blueprint $table) {
