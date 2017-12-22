@@ -18,3 +18,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('library', 'LibraryController@index');
+Route::get('library/{book_id}', 'LibraryController@lookBook');
+
+
+Route::group(
+    ['middleware' => 'auth'], // quiere decir que todas las rutas dentro de este archivo van a requerir loguearse
+    function(){
+        Route::resource('books', 'BooksController');
+        Route::get('book_add_author/{book_id}', 'LibraryController@addAuthor');
+        Route::post('book_add_author/{book_id}', 'BooksController@addAuthor');
+        Route::delete('book_delete_author/{id}', 'BooksController@deleteAuthor');
+        Route::get('book_add_theme/{book_id}', 'LibraryController@addTheme');
+        Route::post('book_add_theme/{book_id}', 'BooksController@addTheme');
+        Route::delete('book_delete_theme/{id}', 'BooksController@deleteTheme');
+    }
+);

@@ -31,10 +31,21 @@ class Books extends Migration
             $table->timestamps();
 
             $table->integer('book_id')->unsigned();
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
 
             $table->integer('theme_id')->unsigned();
-            $table->foreign('theme_id')->references('id')->on('themes');
+            $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
+        });
+
+        Schema::create('book_authors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+
+            $table->integer('book_id')->unsigned();
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+
+            $table->integer('author_id')->unsigned();
+            $table->foreign('author_id')->references('id')->on('author')->onDelete('cascade');
         });
     }
 
@@ -45,6 +56,7 @@ class Books extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('book_authors');
         Schema::dropIfExists('book_themes');
         Schema::dropIfExists('books');
     }
