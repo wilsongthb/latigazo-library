@@ -2,8 +2,6 @@
 
 Escrito en 1 dia XD
 
-Dedicado a Gby, tarde o temprano nos volveremos a ver :D
-
 ## Atributos
 
 - Base de datos en migraciones laravel
